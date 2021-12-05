@@ -1,0 +1,13 @@
+This addon is made and maintained by Rib, the addon creator.
+This file must not be removed from the folder it is originated in, and will be contained in every work by the creator.
+
+This addon under the Arma 3/ Bohemia Interactive APL-SA, is allowed to be copied, distributed or modified.
+https://www.bohemia.net/community/licenses/arma-public-license-share-alike
+
+Additional terms:
+You may not use any part of this addon or derivatives for commericial purposes.
+This is freely available to look inside this mod It's a basic mod.
+
+Any further information contact - Rib... idk who else you expected to contact...
+
+Current Version 1.1
