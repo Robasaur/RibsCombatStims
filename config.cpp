@@ -17,7 +17,7 @@ class CfgPatches
         name = COMPONENT_NAME;
         author = "Rib/Roach";
         units[] = {};
-        weapons[] = {"StimRelief", "StimAdrenal"};
+        weapons[] = {"StimRelief", "StimAdrenal", "StimLatheniol","StimCyano"};
         magazines[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
@@ -40,7 +40,7 @@ class CfgWeapons
         author = "Rib/Roach";
         category = "medication";
         scope = 2; 
-        displayName = "Clone Combat Relief Stim";
+        displayName = "Combat Relief Stimulant";
         picture = "\HSSW_CombatStims\data\clonebasestimulant.paa";
         model = "\MRC\JLTS\contraband\Drugs\stimulant.p3d"; //JLTS
         descriptionShort = "Inject into arm, for minimal pain relief";
@@ -61,7 +61,7 @@ class CfgWeapons
 
     class StimAdrenal: StimRelief
     {
-        displayName = "Clone Combat Adrenal Stim";
+        displayName = "Combat Adrenal Stimulant";
         model = "\MRC\JLTS\contraband\Drugs\stimulant.p3d"; //JLTS
         picture = "\HSSW_CombatStims\data\cloneadrenstimulant.paa";
         descriptionShort = "Inject into arm, for some aim assist";
@@ -76,6 +76,35 @@ class CfgWeapons
         };
     };
 
+    class StimLatheniol: StimRelief
+    {
+        displayName = "Combat Latheniol Stimulant";
+        descriptionShort = "Inject into others to immediately kill";
+        picture = "";
+        hiddenSelections[] = 
+        {
+            "camo1"
+        };
+        hiddenSelectionsTextures[] =
+        {
+            "";
+        };
+    };
+
+    class StimCyano: StimRelief
+    {
+        displayName = "Combat Cyano-Silicate Bacta";
+        descriptionShort = "Spray to cauterise immediately";
+        picture = "";
+        hiddenSelections[] = 
+        {
+            "camo1"
+        };
+        hiddenSelectionsTextures[] =
+        {
+            "";
+        };
+    };
 
 };
 
@@ -92,16 +121,15 @@ class ACE_Medical_Treatment {
             hrIncreaseLow[] = {0};
             hrIncreaseNormal[] = {0};
             hrIncreaseHigh[] = {0};
-            painReduce = 0.4;
+            painReduce = 0.5;
             timeInSystem = 420;
             timeTillMaxEffect = 75;
             maxDose = 10;
             incompatibleMedication[] = {};
             viscosityChange = 2;
         };
-        class ribAdren_CAS: Morphine
+        class ribAdren_CAS: ribpain_CRS
         {
-            author = "Rib - fuck you";
             hrIncreaseLow[] = {25};
             hrIncreaseNormal[] = {15};
             hrIncreaseHigh[] = {10};
@@ -112,6 +140,28 @@ class ACE_Medical_Treatment {
             incompatibleMedication[] = {"ACE_epinephrine"};
             viscosityChange = 5;
         };
+        class rcs_CLS: ribpain_CRS
+        {
+            hrIncreaseLow[] = {-80};
+            hrIncreaseNormal[] = {-50};
+            hrIncreaseHigh[] = {200};
+            painReduce = 1;
+            timeInSystem = 120;
+            timeTillMaxEffect = 80;
+            maxDose = 2;
+            incompatibleMedication[] = {"StimAdrenal","StimRelief","ACE_morphine","ACE_epinephrine"};
+        };
+        class rcs_CSS: ribpain_CRS
+        {
+            hrIncreaseLow[] = {20};
+            hrIncreaseNormal[] = {10,-10};
+            hrIncreaseHigh[] = {-40};
+            painReduce = 0.4;
+            timeInSystem = 30;
+            timeTillMaxEffect = 25;
+            maxDose = 4;
+            incompatibleMedication[] = {};
+        };
     };
 };
 
@@ -119,11 +169,10 @@ class ACE_Medical_Treatment {
 class ACE_Medical_Treatment_Actions 
 {
     class Morphine; /*Arma*/
-    class Epinephrine; /*Arma*/
 
     class ribpain_CRS: Morphine
     {
-        displayName = "Shoot a stim to relieve yourself";
+        displayName = "Inject Pain Relief";
         displayNameProgress = "Injecting Combat Stim... ... ...";
         allowedSelections[] = {"LeftArm","RightArm","LeftLeg","RightLeg"};
         items[] = {"StimRelief"};
@@ -133,14 +182,28 @@ class ACE_Medical_Treatment_Actions
 
     class ribAdren_CAS: ribpain_CRS
     {
-        displayName = "Time to Stimmy up";
+        displayName = "Inject Adrenal";
         displayNameProgress = "Injecting Adrenal Stim... ... ...";
-        allowedSelections[] = {"LeftArm","RightArm","LeftLeg","RightLeg"};
         items[] = {"StimAdrenal"};
-        treatmentTime = 3;
-        category = "medication";
     };
 
+    class rcs_CLS: ribpain_CRS
+    {
+        displayName = "Inject Latheniol";
+        displayNameProgress = "Euthanising the Patient, please wait up to 80 seconds....";
+        items[] = {"StimLatheniol"};
+        allowedSelections[] = {"Torso"};
+        treatmentTime = 8;
+    };
+
+    class rcs_CSS: ribpain_CRS
+    {
+        displayName = "Spraying Cyano Silicate Bacta";
+        displayNameProgress = "Cauterising wounds, disinfecting affected areas, ";
+        items[] = {"StimCyano"};
+        allowedSelections[] = {"LeftArm","RightArm","LeftLeg","RightLeg", "Torso"};
+        treatmentTime = 10;
+    };
 };
 
 
