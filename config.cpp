@@ -151,24 +151,14 @@ class ACE_Medical_Treatment {
             maxDose = 2;
             incompatibleMedication[] = {"StimAdrenal","StimRelief","ACE_morphine","ACE_epinephrine"};
         };
-        class rcs_CSS: ribpain_CRS
-        {
-            hrIncreaseLow[] = {20};
-            hrIncreaseNormal[] = {10,-10};
-            hrIncreaseHigh[] = {-40};
-            painReduce = 0.4;
-            timeInSystem = 30;
-            timeTillMaxEffect = 25;
-            maxDose = 4;
-            incompatibleMedication[] = {};
-        };
     };
 };
 
 
 class ACE_Medical_Treatment_Actions 
 {
-    class Morphine; /*Arma*/
+    class Morphine; /*ace*/
+    class PersonalAidKit; /*ace*/
 
     class ribpain_CRS: Morphine
     {
@@ -193,16 +183,15 @@ class ACE_Medical_Treatment_Actions
         displayNameProgress = "Euthanising the Patient, please wait up to 80 seconds....";
         items[] = {"StimLatheniol"};
         allowedSelections[] = {"Torso"};
-        treatmentTime = 8;
+        treatmentTime = 6;
     };
 
-    class rcs_CSS: ribpain_CRS
+    class rcs_CSS: PersonalAidKit
     {
-        displayName = "Spraying Cyano Silicate Bacta";
+        displayName = "Spray Cyano Silicate Bacta";
         displayNameProgress = "Cauterising wounds, disinfecting affected areas, ";
         items[] = {"StimCyano"};
-        allowedSelections[] = {"LeftArm","RightArm","LeftLeg","RightLeg", "Torso"};
-        treatmentTime = 10;
+        // The rest is used from the PAKs class.
     };
 };
 
