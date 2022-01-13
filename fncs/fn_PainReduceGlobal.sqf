@@ -15,4 +15,4 @@ params ["_caller", "_target", "_selection", "_className"];
 
 _this call ace_medical_treatment_fnc_bandage;
 
-[_target, _className] remoteExecCall ["meuPainReduceLocal", _target];
+[_target, _className] remoteExecCall ["fn_PainReduceLocal", _target];

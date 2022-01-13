@@ -9,9 +9,10 @@
  * Public: yes
  */
 
-#define CRS_PAIN_REDUCTION 0.4
+#define CRS_PAIN_REDUCTION 0.5
 
 params ["_target", "_className"];
+
 private _painReduction = if (_className == "CRS") then 
     {CRS_PAIN_REDUCTION};
 
