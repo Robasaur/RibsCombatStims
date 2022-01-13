@@ -45,11 +45,11 @@ class CfgFncs
         };
         class Adrenal
         {
-            file = "fncs\fn_adrenal.sqf";
+            file = "\fncs\fn_adrenal.sqf";
         };
         class UeedInc
         {
-            file = "fncs\fn_speed.sqf";
+            file = "\fncs\fn_speed.sqf";
         };
     };
 };
