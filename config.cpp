@@ -374,7 +374,7 @@ class ACE_Medical_Treatment {
 class ACE_Medical_Treatment_Actions 
 {
     class Morphine; /*ace*/
-    class BasicBandage; /*ace*/
+    class ElasticBandage; /*ace*/
 
     class HSP_CRS: Morphine
     {
@@ -399,19 +399,19 @@ class ACE_Medical_Treatment_Actions
         displayNameProgress = "Euthanising the Patient, please wait up to 80 seconds before effect....";
         items[] = {"StimLatheniol"};
         callbackSuccess = "HS_fnc_PainReduction";
-        allowedSelections[] = {"Torso"};
+        allowedSelections[] = {"Body"};
         treatmentTime = 6;
     };
-    class HS_CSS: BasicBandage
+    class HS_CSS: ElasticBandage
     {
         displayName = "Spray Cyano Silicate Bacta";
         displayNameProgress = "Cauterising wounds, disinfecting affected areas ";
         items[] = {"CyanoBacta"};
         callbackSuccess = "HS_fnc_PainReduction";
-        treatmentTime = 10;
+        treatmentTime = 8;
         //Look at "Uses"?
     };
-    class HSU_CSU: HSA_CAS
+    class HSU_CSU: HSP_CRS
     {
         displayName = "Inject StimUeed";
         displayNameProgress = "Injecting StimUeed Stim, wait up to a minute for full affect... ... ...";
